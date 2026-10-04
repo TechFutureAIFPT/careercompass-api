@@ -4,9 +4,9 @@ from app.core.config import settings
 from app.api.v1.router import api_router
 
 app = FastAPI(
-    title="CareerCompass-AI 2026 - Main AI Career Advisory Backend",
+    title="CareerCompass-AI 2026 - Unified Career Advisory & Admissions Data Retrieval Platform",
     version="1.0.0",
-    description="Hệ thống Cố vấn Định hướng Nghề nghiệp & Tuyển sinh Đại học Lớp 12 (DeepSeek Reasoner R1/V3 + Chuẩn Thông tư 06/2026/TT-BGDĐT)",
+    description="Nền tảng Hợp nhất Cố vấn Hướng nghiệp & Cào - Truy xuất Dữ liệu Tuyển sinh Đại học Việt Nam (DeepSeek Reasoner R1/V3 + Knowledge Graph + RAG + Thông tư 06/2026/TT-BGDĐT)",
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
     docs_url="/docs",
     redoc_url="/redoc"
@@ -32,15 +32,15 @@ async def add_security_headers(request, call_next):
     response.headers["X-XSS-Protection"] = "1; mode=block"
     return response
 
-# Include Main Backend routes
+# Include Unified API routes
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
 @app.get("/", tags=["Health"])
 async def root():
     return {
-        "service": "CareerCompass-AI 2026 - Main AI Backend",
+        "service": "CareerCompass-AI 2026 - Unified API Platform",
         "primary_ai": "DeepSeek Reasoner (R1 / V3)",
-        "data_retrieval_service": settings.RETRIEVAL_SERVICE_URL,
+        "architecture": "Single Unified API (In-Process Data Retrieval & Crawler Integrated)",
         "regulation": "Thông tư 06/2026/TT-BGDĐT",
         "docs": "/docs"
     }
@@ -49,9 +49,9 @@ async def root():
 async def health_check():
     return {
         "status": "healthy",
-        "service": "main_backend",
+        "service": "careercompass_unified_api",
         "ai_engine": "DeepSeek Reasoner (R1 / V3)",
-        "data_service_url": settings.RETRIEVAL_SERVICE_URL,
+        "architecture": "Single Unified Service",
         "environment": settings.ENVIRONMENT
     }
 

@@ -8,7 +8,9 @@ from app.api.v1.endpoints import (
     chat,
     users,
     graph,
-    rag
+    rag,
+    retrieval,
+    universities
 )
 
 api_router = APIRouter()
@@ -22,3 +24,5 @@ api_router.include_router(chat.router, prefix="/chat", tags=["Trợ lý Hướng
 api_router.include_router(users.router, prefix="/users", tags=["Quản lý Học sinh & Lưu trữ Dữ liệu (User Persistence)"])
 api_router.include_router(graph.router, prefix="/graph", tags=["Đồ thị Tri thức Hướng nghiệp (Knowledge Graph)"])
 api_router.include_router(rag.router, prefix="/rag", tags=["Cơ chế Tra cứu RAG Tuyển sinh (Admission RAG Engine)"])
+api_router.include_router(retrieval.router, prefix="/retrieval", tags=["Truy xuất Dữ liệu Tuyển sinh & Điểm chuẩn (Admission Data Retrieval)"])
+api_router.include_router(universities.router, prefix="/universities", tags=["Cơ sở Đào tạo & Điểm chuẩn Đại học"])
